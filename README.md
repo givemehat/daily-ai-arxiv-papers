@@ -1,5 +1,12 @@
 # 🤖 Daily AI Research Papers
 
+<div align="center">
+  <img src="https://img.shields.io/github/repo-size/givemehat/daily-ai-arxiv-papers?style=for-the-badge&color=blue" alt="Repository Size" />
+  <img src="https://img.shields.io/github/license/givemehat/daily-ai-arxiv-papers?style=for-the-badge&color=green" alt="License" />
+  <img src="https://img.shields.io/github/commit-activity/m/givemehat/daily-ai-arxiv-papers?style=for-the-badge&color=orange" alt="Commit Activity" />
+  <img src="https://img.shields.io/github/last-commit/givemehat/daily-ai-arxiv-papers?style=for-the-badge&color=red" alt="Last Commit" />
+</div>
+
 *Automatically fetched on 2026-08-10*
 
 This repository automatically fetches the latest top research papers in Artificial Intelligence, Machine Learning, and Computer Vision from arXiv every day.
