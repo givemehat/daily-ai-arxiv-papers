@@ -7,11 +7,29 @@ import os
 ARXIV_URL = "http://export.arxiv.org/api/query?search_query=cat:cs.AI+OR+cat:cs.LG+OR+cat:cs.CV&sortBy=submittedDate&sortOrder=descending&max_results=10"
 NS = {'atom': 'http://www.w3.org/2005/Atom'}
 
+import time
+from urllib.error import HTTPError
+
 def fetch_papers():
     print(f"Fetching papers from arXiv API...")
-    req = urllib.request.Request(ARXIV_URL)
-    with urllib.request.urlopen(req) as response:
-        xml_data = response.read()
+    req = urllib.request.Request(ARXIV_URL, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'})
+    
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            with urllib.request.urlopen(req) as response:
+                xml_data = response.read()
+            break
+        except HTTPError as e:
+            if e.code == 429:
+                wait_time = 5 * (attempt + 1)
+                print(f"Rate limited (429). Retrying in {wait_time}s...")
+                time.sleep(wait_time)
+            else:
+                raise
+    else:
+        print("Max retries reached. Exiting.")
+        return []
     
     root = ET.fromstring(xml_data)
     papers = []
